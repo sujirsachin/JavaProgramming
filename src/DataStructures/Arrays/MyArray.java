@@ -13,11 +13,14 @@ public class MyArray {
         this.capacity=1;
         this.data=new Object[1];
     }
-
     public Object get(int index) {
-        return data[index];
+        if(this.length!=0)
+        {
+            return data[index];
+        }
+        return null;
     }
-    public void push(String newElement)
+    public void push(Object newElement)
     {
         if(this.length==0)
         {
@@ -37,13 +40,6 @@ public class MyArray {
             this.data[this.length-1]=newElement;
         }
     }
-    public void traverse()
-    {
-        for (int i=0;i<this.length;i++)
-        {
-            System.out.println(this.data[i]);
-        }
-    }
     public void pop()
     {
         if(this.length>0)
@@ -57,6 +53,36 @@ public class MyArray {
             this.data=result;
         }
     }
+    public void delete(int index)
+    {
+        shiftItems(index);
+    }
+    public void shiftItems(int index)
+    {
+        for(int i=index;i<length-1;i++)
+        {
+            this.data[i]=data[i+1];
+        }
+        pop();
+    }
+    public void traverse()
+    {
+        if(this.length==0)
+        {
+            System.out.println("Empty Array");
+        }
+        for (int i=0;i<this.length;i++)
+        {
+            System.out.println(this.data[i]);
+        }
+    }
+    public void clear()
+    {
+        Object[] tempArray=new Object[0];
+        this.data=tempArray;
+        this.length=0;
+    }
+
     public static void main(String args[])
     {
         MyArray newArray=new MyArray();
@@ -69,7 +95,12 @@ public class MyArray {
         newArray.push("5");
         newArray.pop();
         System.out.println("length of newArray: "+newArray.length);
-        System.out.println(newArray.data.length);
         newArray.traverse();
+        newArray.push('a');
+        newArray.delete(0);
+        System.out.println("length of newArray: "+newArray.length);
+        newArray.traverse();
+        newArray.clear();
+
     }
 }
