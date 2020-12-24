@@ -3,24 +3,26 @@ package DataStructures.Arrays;
 import java.util.Stack;
 
 public class StringReverse {
-    public static void reverseString(String string)
+    public static String reverseString(String string)
     {
         String [] splitString=string.split("");
         String result="";
         for (int i=splitString.length-1;i>=0;i--)
         {
-            System.out.println(splitString[i]);
+            result+=splitString[i];
         }
+        return result;
     }
-    public static void reverseNumber1(int number)
+    public static int reverseNumber1(int number)
     {
         String string=Integer.toString(number);
         String [] splitString=string.split("");
         String result="";
         for (int i=splitString.length-1;i>=0;i--)
         {
-            System.out.println(splitString[i]);
+            result+=splitString[i];
         }
+        return Integer.parseInt(result);
     }
     public static int reverseNumber2(int number)
     {
@@ -39,12 +41,21 @@ public class StringReverse {
         }
         return rev;
     }
+    public static String reverseStringBuiltInMethod(String string)
+    {
+        return new StringBuilder(string).reverse().toString();
+    }
     public static void main(String args[])
     {
-        reverseString("Reverse a string");
+
+        System.out.println(reverseString("String Reverse"));
         System.out.println("");
-        reverseNumber1(123);
+        System.out.println(reverseNumber1(54321));
         System.out.println("");
-        System.out.println(reverseNumber2(789256));
+        System.out.println(reverseStringBuiltInMethod("String Reverse Using Built-in Function"));
+        System.out.println("");
+        System.out.println(reverseNumber2(19876));
+
+
     }
 }
