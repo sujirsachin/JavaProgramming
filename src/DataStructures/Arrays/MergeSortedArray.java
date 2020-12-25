@@ -3,7 +3,59 @@ package DataStructures.Arrays;
 public class MergeSortedArray {
     public static int[] mergeSortedArrays(int[] array1, int[] array2)
     {
+        if(array1.length==0)
+        {
+            return array2;
+        }
+        if(array2.length==0)
+        {
+            return array1;
+        }
         int[] mergedArray=new int[array1.length+array2.length];
+        int i=0,j=0,k=0,l=0;
+        while(k<mergedArray.length) // iterating through the length of the merged array, which is the length of array1 + the length of array2
+        {
+            if(i<array1.length && j<array2.length) // compare and merge until the pointer reaches the end of the smallest array
+            {
+                if (array1[i] < array2[j])
+                {
+                    mergedArray[k] = array1[i];
+                    i++;
+                    k++;
+                }
+                else
+                {
+                    mergedArray[k] = array2[j];
+                    j++;
+                    k++;
+                }
+            }
+            else if(i==array1.length && j<array2.length) // merging remaining elements from array2 if array 2 is larger than array 1
+            {
+                mergedArray[k] = array2[j];
+                j++;
+                k++;
+            }
+            else if(j==array2.length && i<array1.length) // merging remaining elements from array1 if array 1 is larger than array 2
+            {
+                mergedArray[k] = array1[i];
+                i++;
+                k++;
+            }
+        }
+        return mergedArray;
+    }
+    public static char[] mergeSortedCharArrays(char[] array1, char[] array2)
+    {
+        if(array1.length==0)
+        {
+            return array2;
+        }
+        if(array2.length==0)
+        {
+            return array1;
+        }
+        char[] mergedArray=new char[array1.length+array2.length];
         int i=0,j=0,k=0,l=0;
         while(k<mergedArray.length) // iterating through the length of the merged array, which is the length of array1 + the length of array2
         {
@@ -45,6 +97,13 @@ public class MergeSortedArray {
         for (int i=0;i<mergedArray.length;i++)
         {
             System.out.println(mergedArray[i]);
+        }
+        char[] charArray1={'a','c','e','g'};
+        char[] charArray2={'b','d','f'};
+        char[] mergedCharArray=mergeSortedCharArrays(charArray1,charArray2);
+        for (int i=0;i<mergedCharArray.length;i++)
+        {
+            System.out.println(mergedCharArray[i]);
         }
     }
 }
