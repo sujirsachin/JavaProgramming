@@ -7,10 +7,12 @@ import java.util.Arrays;
 public class HashTable {
     private ArrayList<KeyValue>[] data;
     private int currentLength=0;
+    private int totalSize;
     public HashTable(int size)
     {
         data=new ArrayList[size];
         currentLength=0;
+        totalSize=0;
     }
     /**
      * Returns hash key for a key string
@@ -42,6 +44,7 @@ public class HashTable {
         }
         KeyValue pair=new KeyValue(key,value);
         data[address].add(pair);
+        totalSize++;
     }
     /**
      * Returns the value at the location of a key
@@ -71,19 +74,55 @@ public class HashTable {
     public String[] keys()
     {
         ArrayList<KeyValue>[] holder=data;
-        String[] keys=new String[currentLength];
+        String[] keys=new String[totalSize];
         int count=0;
+        int i=0;
         for (ArrayList<KeyValue> keyValues:holder)
         {
-            if (keyValues!=null)
+            i=0;
+            if(keyValues!=null && keyValues.size()>1)
             {
-                keys[count]=keyValues.get(0).getKey();
-                count++;
+                while (i<keyValues.size())
+                {
+                    keys[count]=keyValues.get(i).getKey();
+                    count++;
+                    i++;
+                }
+            }
+           else if (keyValues!=null)
+            {
+               keys[count]=keyValues.get(0).getKey();
+               count++;
             }
         }
         return keys;
     }
 
+    /**
+     * prints the create hash table
+     */
+    public void printTable()
+    {
+        ArrayList<KeyValue>[] holder=data;
+        String[] keys=new String[currentLength];
+        int count=0;
+        int i=0;
+        System.out.printf("%-20s %s\n", "Key", "Value");
+        for (ArrayList<KeyValue> keyValues:holder) {
+            i = 0;
+            if (keyValues != null && keyValues.size() > 1) {
+                while (i < keyValues.size()) {
+                    System.out.printf("%-20s %s\n", keyValues.get(i).getKey(), keyValues.get(i).getValue());
+                    i++;
+                }
+            }
+            else if (keyValues != null) {
+                System.out.printf("%-20s %s\n", keyValues.get(0).getKey(), keyValues.get(0).getValue());
+                keys[count] = keyValues.get(0).getKey();
+                count++;
+            }
+        }
+    }
     /**
      *
      * @param args
@@ -92,9 +131,13 @@ public class HashTable {
     {
         HashTable hashTable = new HashTable(50);
         hashTable.set("grapes", 1200);
+        hashTable.set("grapes", 1200);
+        hashTable.set("grapess", 120000);
         hashTable.set("apple", 1500);
         System.out.println("value for key grapes: " + hashTable.get("grapes"));
         System.out.println("value for key apple: " + hashTable.get("apple"));
+        System.out.println("value for key grapess: " + hashTable.get("grapess"));
         System.out.println("list of keys: " + Arrays.toString(hashTable.keys()));
+        hashTable.printTable();
     }
 }
