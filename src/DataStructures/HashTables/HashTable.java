@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HashTable {
-    ArrayList<KeyValue>[] data;
-    int currentLength=0;
+    private ArrayList<KeyValue>[] data;
+    private int currentLength=0;
     public HashTable(int size)
     {
         data=new ArrayList[size];
         currentLength=0;
     }
+    /**
+     * Returns hash key for a key string
+     * @param  key  a string key value
+     * @return      the hash key for a key string
+     */
     private int _hash(String key)
     {
         int hash = 0;
@@ -21,6 +26,11 @@ public class HashTable {
         }
         return hash;
     }
+    /**
+     * Adds a keyValue pair into the hash table
+     * @param  key  a string key value
+     * @param  value an integer value to store
+     */
     public void set(String key, int value)
     {
         int address=_hash(key);
@@ -33,6 +43,11 @@ public class HashTable {
         KeyValue pair=new KeyValue(key,value);
         data[address].add(pair);
     }
+    /**
+     * Returns the value at the location of a key
+     * @param  key  a string key value
+     * @return      the value at the location of a key
+     */
     public Integer get(String key)
     {
         int address=_hash(key);
@@ -49,6 +64,10 @@ public class HashTable {
         }
         return null;
     }
+    /**
+     * Returns the set of keys present in the hash table
+     * @return      the set of keys present in the hash table
+     */
     public String[] keys()
     {
         ArrayList<KeyValue>[] holder=data;
@@ -64,6 +83,11 @@ public class HashTable {
         }
         return keys;
     }
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args)
     {
         HashTable hashTable = new HashTable(50);
