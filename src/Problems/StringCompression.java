@@ -1,4 +1,4 @@
-package Sample;
+package Problems;
 
 public class StringCompression {
     public static String compressString(String message)

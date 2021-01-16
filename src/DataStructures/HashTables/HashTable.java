@@ -19,9 +19,12 @@ public class HashTable {
      * @param  key  a string key value
      * @return      the hash key for a key string
      */
-    private int _hash(String key)
-    {
+    private int _hash(String key) throws Exception {
         int hash = 0;
+        if(data.length==0)
+        {
+            throw new Exception("Cannot take 0 as the size");
+        }
         for (int i = 0; i < key.length(); i++)
         {
             hash = (hash + key.codePointAt(i) * i) % data.length;
@@ -33,8 +36,7 @@ public class HashTable {
      * @param  key  a string key value
      * @param  value an integer value to store
      */
-    public void set(String key, int value)
-    {
+    public void set(String key, int value) throws Exception {
         int address=_hash(key);
         if(data[address]==null)
         {
@@ -51,8 +53,7 @@ public class HashTable {
      * @param  key  a string key value
      * @return      the value at the location of a key
      */
-    public Integer get(String key)
-    {
+    public Integer get(String key) throws Exception {
         int address=_hash(key);
         ArrayList<KeyValue> holder=data[address];
         if(holder!=null)
@@ -127,10 +128,8 @@ public class HashTable {
      *
      * @param args
      */
-    public static void main(String[] args)
-    {
-        HashTable hashTable = new HashTable(50);
-        hashTable.set("grapes", 1200);
+    public static void main(String[] args) throws Exception {
+        HashTable hashTable = new HashTable(10);
         hashTable.set("grapes", 1200);
         hashTable.set("grapess", 120000);
         hashTable.set("apple", 1500);
