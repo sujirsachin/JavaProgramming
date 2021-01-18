@@ -1,5 +1,7 @@
 package DataStructures.Arrays;
-/* Given an array of 0’s and 1’s,
+/*
+* Source: GeeksForGeeks
+* Given an array of 0’s and 1’s,
  *we need to write a program to move all the 0's to one side, and
  * all the 1's to the other side.
  * Example
