@@ -1,6 +1,6 @@
 package DataStructures.LinkedList;
 
-public class MyLinkedList
+public class SinglyLinkedList
 {
     Node head;
     class Node
@@ -13,6 +13,7 @@ public class MyLinkedList
             next=null;
         }
     }
+
     public int countNodes()
     {
         Node currentNode=head;
@@ -28,6 +29,7 @@ public class MyLinkedList
         }
         return numberOfNodes;
     }
+
     public Node insertNode(int data)
     {
         Node node=new Node(data);
@@ -47,6 +49,20 @@ public class MyLinkedList
         currentNode.next=null;
         return currentNode;
     }
+
+    public Node insertFirst(int data)
+    {
+        if(head==null)
+        {
+            head=new Node(data);
+            return head;
+        }
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+        return head;
+    }
+
     public Node deleteNode(int data) {
         if (head == null) {
             return null;
@@ -63,6 +79,44 @@ public class MyLinkedList
                 currentNode.next=null;
             }
         }
+        return currentNode;
+    }
+    public void deleteNodeAfter(Node prevNode)
+    {
+        if(head==prevNode)
+        {
+            if(head.next!=null)
+            {
+                head.next=head.next.next;
+            }
+        }
+        else
+        {
+            Node currentNode=head;
+            while(currentNode!=prevNode)
+            {
+                currentNode=currentNode.next;
+            }
+            if(currentNode.next!=null)
+            {
+
+                currentNode.next=currentNode.next.next;
+            }
+        }
+    }
+    public Node deleteLast()
+    {
+        if(head.next==null)
+        {
+            head=null;
+            return head;
+        }
+        Node currentNode=head;
+        while(currentNode.next.next!=null)
+        {
+            currentNode=currentNode.next;
+        }
+        currentNode.next=null;
         return currentNode;
     }
     public void clearLinkedList()
@@ -94,9 +148,10 @@ public class MyLinkedList
             System.out.println("");
         }
     }
+
     public static void main(String args[])
     {
-        MyLinkedList list=new MyLinkedList();
+        SinglyLinkedList list=new SinglyLinkedList();
         list.insertNode(1);
         list.insertNode(2);
         list.insertNode(3);
@@ -110,6 +165,18 @@ public class MyLinkedList
         list.insertNode(7);
         list.traverseList();
         list.clearLinkedList();
+        list.traverseList();
+        list.insertFirst(3);
+        list.insertFirst(111);
+        Node toBeDeleted=list.insertFirst(112);
+        list.insertFirst(1);
+        list.insertFirst(2);
+        list.traverseList();
+        list.deleteNodeAfter(toBeDeleted);
+        list.traverseList();
+        list.deleteLast();
+        list.deleteLast();
+        list.deleteLast();
         list.traverseList();
        }
 }
