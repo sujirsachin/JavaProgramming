@@ -24,12 +24,16 @@ public class RunSchool {
         School newSchool=new School();
         newSchool.addStudents(student1);
         //For a given student and course offering, return the grade
+        System.out.println("For a given student and course offering, return the grade");
         newSchool.getGrade("Sachin","MATH108");
+        System.out.println("For a given student, year, and semester, return a grade point average");
         //For a given student, year, and semester, return a grade point average
         newSchool.getGrade("Sachin", "2017","Spring");
+        System.out.println("For a given student, year, and semester, return a list of courses and the grades that the given student received in those courses");
         //For a given student, year, and semester, return a list of courses and the grades that the given student received in those courses
         newSchool.getInfo("Sachin", "2017","Spring");
         System.out.println("");
+        System.out.println("For a given student, year, and semester, return a list of courses and the grades that the given student received in those courses");
         //For a given student, year, and semester, return a list of courses and the grades that the given student received in those courses
         newSchool.getInfo("Sachin", "2016","Fall");
 
@@ -43,6 +47,7 @@ public class RunSchool {
         newCourseTeacher.add(courseTeacher);
         teacher.setCourses(newCourseTeacher);
         newSchool.addTeachers(teacher);
+        System.out.println("For a given course offering, return the teacher");
         //For a given course offering, return the teacher
         newSchool.getTeacher("MATH108");
 
@@ -55,6 +60,7 @@ public class RunSchool {
         newCourseTeacher2.add(courseTeacher);
         teacher2.setCourses(newCourseTeacher2);
         newSchool.addTeachers(teacher2);
+        System.out.println("For a given course offering, return the teacher");
         //For a given course offering, return the teacher
         newSchool.getTeacher("MATH116");
     }

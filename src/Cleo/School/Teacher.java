@@ -1,7 +1,5 @@
 package Cleo.School;
 
-import Dummy.Address;
-
 import java.util.ArrayList;
 
 public class Teacher extends Person
