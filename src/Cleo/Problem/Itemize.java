@@ -24,25 +24,25 @@ public class Itemize
     }
     public static void main(String[] args) {
         String s = "Example";
-        List l = new ArrayList();
-        List a = new ArrayList();
-        ArrayList<String> b = new ArrayList<String>();
-        ArrayList<String> c = new ArrayList<String>();
-        ArrayList<String> d = new ArrayList<String>();
+        List mainList = new ArrayList();
+        List innerInnerList = new ArrayList();
+        ArrayList<String> innerList = new ArrayList<String>();
+        ArrayList<String> innerInnerInner = new ArrayList<String>();
+        ArrayList<String> innerList2 = new ArrayList<String>();
         //inner list
-        a.add("a");
-        a.add("b");
-        c.add("1");
-        c.add("2");
-        c.add("3");
-        a.add(c);
-        b.add("eggs");
+        innerInnerList.add("a");
+        innerInnerList.add("b");
+        innerInnerInner.add("1");
+        innerInnerInner.add("2");
+        innerInnerInner.add("3");
+        innerInnerList.add(innerInnerInner);
+        innerList.add("eggs");
         // outer list
-        l.add("a string");
-        l.add(a);
-        l.add("spam");
-        d.add("eggs");
-        l.add(d);
-        itemizeList(s, l);
+        mainList.add("a string");
+        mainList.add(innerInnerList);
+        mainList.add("spam");
+        innerList2.add("eggs");
+        mainList.add(innerList2);
+        itemizeList(s, mainList);
     }
 }
